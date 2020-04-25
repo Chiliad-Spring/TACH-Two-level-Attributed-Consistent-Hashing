@@ -1,0 +1,15 @@
+TESTS += \
+ tests/test-xor.sh \
+ tests/test-ring.sh \
+ tests/test-multiring.sh \
+ tests/test-hash-lookup3.sh \
+ tests/test-hash-spooky.sh \
+ tests/test-two-d.sh
+
+EXTRA_DIST += \
+ tests/test-xor.sh \
+ tests/test-ring.sh \
+ tests/test-multiring.sh \
+ tests/test-hash-lookup3.sh \
+ tests/test-hash-spooky.sh \
+ tests/test-two-d.sh
