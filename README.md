@@ -16,9 +16,10 @@ make check # optional
                                   -d <number of devices>
                                   -o <number of objects>
                                   -r <replication factor>
-                                  -p <placement algorithm>
                                   -v <virtual nodes per physical node>
                                   -b <size of block (KB)>
                                   -e <size of sector>
                                   -t <number of threads>
+                                  -a <placement algorithm(1=TACH 2=Capacity-based 3=Performance-based 4=CH)>
+
 ```                                  
