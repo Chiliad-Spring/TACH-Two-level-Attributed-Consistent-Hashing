@@ -37,6 +37,7 @@ struct options
     unsigned block_size;
     unsigned int sector_size;
     unsigned int threads;
+    unsigned int algm;
 };
 
 struct comb_stats
@@ -219,10 +220,8 @@ void device_gen(struct node_type server_i , struct device_type** device){
 
 }
 
-
-
-
-int server_choose(int i, int window, int num_server,struct node_type *server,double bsize){
+//TACH
+int server_choose1(int i, int window, int num_server,struct node_type *server,double bsize){
     int j =0;
     int k =0;
     double blocksize = bsize*1000,max = 0;                       
@@ -246,7 +245,7 @@ int server_choose(int i, int window, int num_server,struct node_type *server,dou
     return i+j;
 }
 
-int device_choose(int i, int window,int num_device, struct device_type *device,double bsize){
+int device_choose1(int i, int window,int num_device, struct device_type *device,double bsize){
     int j = 0;
     int k = 0;
     double blocksize = bsize*1000,max = 0;                           
@@ -273,6 +272,111 @@ int device_choose(int i, int window,int num_device, struct device_type *device,d
     }   
     return j+i;
 }
+
+//Capacity-based CH
+int server_choose2(int i, int window, int num_server,struct node_type *server,double bsize){
+    int j =0;
+    int k =0;
+    double blocksize = bsize*1000,max = 0; 
+    double a[window],b[window],c[window],d[window];
+    for(k = 0;k<window;k++){
+        a[k] = server[(i+k)%num_server].cap ;             
+        b[k] = server[(i+k)%num_server].remain;
+        c[k] = 1;                                         
+    }
+    for(k = 0;k<window;k++){                                    
+        d[k] = ((b[k]-blocksize)*c[k]*a[k]+b[(k+1)%window]*c[(k+1)%window]*a[(k+1)%window]+b[(k+2)%window]*c[(k+2)%window]*a[(k+2)%window] )
+                / sqrt(((b[k]-blocksize)*c[k]*(b[k]-blocksize)*c[k]
+                  +b[(k+1)%window]*c[(k+1)%window]*b[(k+1)%window]*c[(k+1)%window]
+                  +b[(k+2)%window]*c[(k+2)%window]*b[(k+2)%window]*c[(k+2)%window])*(a[0]*a[0]+a[1]*a[1]+a[2]*a[2]));
+        if(d[k]>max){
+            max = d[k];
+            j = k;
+        }
+    }
+    return i+j;
+}
+
+int device_choose2(int i, int window,int num_device, struct device_type *device,double bsize){
+    int j = 0;
+    int k = 0;
+    double blocksize = bsize*1000,max = 0;
+    double a[window];
+    double b[window];
+    double c[window];
+    double d[window];   
+    for(k = 0;k<window;k++){                                   
+        a[k] = device[(i+k)%num_device].cap ;  
+        b[k] = device[(i+k)%num_device].remain;
+        c[k] = 1;
+    } 
+    for(k = 0;k<window;k++){
+        d[k] = ((b[k]-blocksize)*c[k]*a[k]+b[(k+1)%window]*c[(k+1)%window]*a[(k+1)%window]+b[(k+2)%window]*c[(k+2)%window]*a[(k+2)%window] )
+                / sqrt(((b[k]-blocksize)*c[k]*(b[k]-blocksize)*c[k]
+                  +b[(k+1)%window]*c[(k+1)%window]*b[(k+1)%window]*c[(k+1)%window]
+                  +b[(k+2)%window]*c[(k+2)%window]*b[(k+2)%window]*c[(k+2)%window])*(a[0]*a[0]+a[1]*a[1]+a[2]*a[2]));
+
+        if(d[k]>max){
+            max = d[k];
+            j = k;
+        }
+    }   
+    return j+i;
+}
+
+//Performance-based CH
+int server_choose3(int i, int window, int num_server,struct node_type *server,double bsize){
+    int j =0;
+    int k =0;
+    double blocksize = bsize*1000,max = 0; 
+    double a[window],b[window],c[window],d[window];
+    for(k = 0;k<window;k++){
+        a[k] = server[(i+k)%num_server].perform;
+        b[k] = server[(i+k)%num_server].remain;
+        c[k] = server[(i+k)%num_server].perform - server[(i+k)%num_server].workload;
+    }
+    for(k = 0;k<window;k++){                           
+        d[k] = ((c[k]-blocksize)*a[k]+c[(k+1)%window]*a[(k+1)%window]+c[(k+2)%window]*a[(k+2)%window] )
+                / sqrt(((c[k]-blocksize)*(c[k]-blocksize)
+                  +c[(k+1)%window]*c[(k+1)%window]
+                  +c[(k+2)%window]*c[(k+2)%window])*(a[0]*a[0]+a[1]*a[1]+a[2]*a[2]));
+
+        if(d[k]>max){
+            max = d[k];
+            j = k;
+        }
+    }
+    return i+j;
+}
+
+int device_choose3(int i, int window,int num_device, struct device_type *device,double bsize){
+    int j = 0;
+    int k = 0;
+    double blocksize = bsize*1000,max = 0;
+    double a[window];
+    double b[window];
+    double c[window];
+    double d[window];   
+    for(k = 0;k<window;k++){                        
+        a[k] = device[(i+k)%num_device].bandwidth;  
+        b[k] = device[(i+k)%num_device].remain;
+        c[k] = (device[(i+k)%num_device].bandwidth - device[(i+k)%num_device].workload) ;
+
+    } 
+    for(k = 0;k<window;k++){
+        d[k] = ((c[k]-blocksize)*a[k]+c[(k+1)%window]*a[(k+1)%window]+c[(k+2)%window]*a[(k+2)%window] )
+                / sqrt(((c[k]-blocksize)*(c[k]-blocksize)
+                  +c[(k+1)%window]*c[(k+1)%window]
+                  +c[(k+2)%window]*c[(k+2)%window])*(a[0]*a[0]+a[1]*a[1]+a[2]*a[2]));
+        if(d[k]>max){
+            max = d[k];
+            j = k;
+        }
+    }   
+    return j+i;
+}
+
+
 
 
 
@@ -322,6 +426,7 @@ int main(
 #endif
 
     ig_opts = parse_args(argc, argv);         // input
+    ig_opts->placement = "ring";              //we use ring hashing
     if (!ig_opts)
     {
         usage(argv[0]);
@@ -411,8 +516,23 @@ int main(
             
 /*  hashing   */   
  
-        for(j = 0;j<ig_opts->replication;j++){   //添写三个变量两个函数：server_index[]、device_index_temp、device_index
-            server_index[j] = server_choose(comb_tmp[j],ig_opts->sector_size,ig_opts->num_servers,server,ig_opts->block_size) % ig_opts->num_servers; 
+        for(j = 0;j<ig_opts->replication;j++){   
+            switch(ig_opts->algm)
+            {
+                case 1:
+                server_index[j] = server_choose1(comb_tmp[j],ig_opts->sector_size,ig_opts->num_servers,server,ig_opts->block_size) % ig_opts->num_servers;
+                break;
+                case 2:
+                server_index[j] = server_choose2(comb_tmp[j],ig_opts->sector_size,ig_opts->num_servers,server,ig_opts->block_size) % ig_opts->num_servers;
+                break;
+                case 3:
+                server_index[j] = server_choose3(comb_tmp[j],ig_opts->sector_size,ig_opts->num_servers,server,ig_opts->block_size) % ig_opts->num_servers;
+                break;
+                case 4:
+                server_index[j] = comb_tmp[j] % ig_opts->num_servers; 
+                break;
+            }
+            //server_index[j] = server_choose(comb_tmp[j],ig_opts->sector_size,ig_opts->num_servers,server,ig_opts->block_size) % ig_opts->num_servers; 
             server[server_index[j]].count++;                                                      
             server[server_index[j]].remain = server[server_index[j]].remain - block;
             server[server_index[j]].workload = server[server_index[j]].workload + block/10000;     
@@ -421,8 +541,23 @@ int main(
                                                 server[server_index[j]].num_device,
                                                 ig_opts->virt_factor,
                                                 0);                                        
-            ch_placement_find_closest(instance2, total_objs[i].oid, 1, device_index_temp);//hashing               
-            device_index = device_choose(device_index_temp[0],ig_opts->sector_size,server[server_index[j]].num_device, server[server_index[j]].media,ig_opts->block_size) % server[server_index[j]].num_device;
+            ch_placement_find_closest(instance2, total_objs[i].oid, 1, device_index_temp);//hashing  
+            switch(ig_opts->algm)
+            {
+                case 1:
+                device_index = device_choose1(device_index_temp[0],ig_opts->sector_size,server[server_index[j]].num_device, server[server_index[j]].media,ig_opts->block_size) % server[server_index[j]].num_device;
+                break;
+                case 2:
+                device_index = device_choose2(device_index_temp[0],ig_opts->sector_size,server[server_index[j]].num_device, server[server_index[j]].media,ig_opts->block_size) % server[server_index[j]].num_device;
+                break;
+                case 3:
+                device_index = device_choose3(device_index_temp[0],ig_opts->sector_size,server[server_index[j]].num_device, server[server_index[j]].media,ig_opts->block_size) % server[server_index[j]].num_device;
+                break;
+                case 4:
+                device_index = device_index_temp[0] % server[server_index[j]].num_device;
+                break;
+            }             
+            //device_index = device_choose(device_index_temp[0],ig_opts->sector_size,server[server_index[j]].num_device, server[server_index[j]].media,ig_opts->block_size) % server[server_index[j]].num_device;
                                  
             tid = omp_get_thread_num();
             incre[tid] = block /(server[server_index[j]].media[device_index].bandwidth);
@@ -529,11 +664,11 @@ static int usage(char *exename)
     fprintf(stderr, "    -d <number of devices>\n");
     fprintf(stderr, "    -o <number of objects>\n");
     fprintf(stderr, "    -r <replication factor>\n");
-    fprintf(stderr, "    -p <placement algorithm>\n");
     fprintf(stderr, "    -v <virtual nodes per physical node>\n");
     fprintf(stderr, "    -b <size of block (KB)>\n");
     fprintf(stderr, "    -e <size of sector>\n");
     fprintf(stderr, "    -t <number of threads>\n");
+    fprintf(stderr, "    -a <placement algorithm(1=TACH 2=Capacity-based 3=Performance-based 4=CH)>\n");
     exit(1);
 }
 
@@ -548,7 +683,7 @@ static struct options *parse_args(int argc, char *argv[])
         return (NULL);
     memset(opts, 0, sizeof(*opts));
 
-    while ((one_opt = getopt(argc, argv, "s:d:o:r:hp:v:b:e:t:")) != EOF)
+    while ((one_opt = getopt(argc, argv, "s:d:o:r:hv:b:e:t:a:")) != EOF)
     {
         switch (one_opt)
         {
@@ -591,15 +726,26 @@ static struct options *parse_args(int argc, char *argv[])
             ret = sscanf(optarg, "%u", &opts->threads);
             if (ret != 1)
                 return (NULL);
-            break;            
+            break;
+            
+        case 'a':
+            ret = sscanf(optarg, "%u", &opts->algm);
+            if (ret != 1)
+                return (NULL);
+            break;   
+            /*              
         case 'p':
             opts->placement = strdup(optarg);
             if (!opts->placement)
                 return (NULL);
             break;
+            */
         case '?':
             usage(argv[0]);
             exit(1);
+        case 'h':
+            usage(argv[0]);
+            exit(1);    
         }
     }
 
@@ -613,14 +759,18 @@ static struct options *parse_args(int argc, char *argv[])
         return (NULL);
     if (opts->virt_factor < 1)
         return (NULL);
+        /*
     if (!opts->placement)
         return (NULL);
+        */
     if (opts->num_devices<1)
         return (NULL);
     if (opts->sector_size<3)
         return (NULL);
     if (opts->threads<1)
-        return (NULL);                
+        return (NULL);
+    if (opts->algm!=1 && opts->algm!=2 && opts->algm!=3 && opts->algm!=4)
+        return (NULL);                    
 
     assert(opts->replication <= CH_MAX_REPLICATION);
 
