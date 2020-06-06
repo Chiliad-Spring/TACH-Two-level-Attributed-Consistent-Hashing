@@ -1,0 +1,242 @@
+XDG_SESSION_ID=1896
+HOSTNAME=node86
+SELINUX_ROLE_REQUESTED=
+SHELL=/bin/bash
+TERM=xterm
+HISTSIZE=1000
+HADOOP_HOME=/home/xiong/hadoop-2.9.1
+SSH_CLIENT=10.10.111.48 51588 22
+SELINUX_USE_CURRENT_RANGE=
+SSH_TTY=/dev/pts/0
+USER=USER
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.222.b10-0.el7_6.x86_64/bin:/home/xiong/hadoop-2.9.1/bin:/home/xiong/hadoop-2.9.1/sbin:/USER/bin
+MAIL=/var/spool/mail/USER
+_=/usr/bin/env
+PWD=/home
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.222.b10-0.el7_6.x86_64
+LANG=en_US.UTF-8
+SELINUX_LEVEL_REQUESTED=
+HISTCONTROL=ignoredups
+HOME=/USER
+SHLVL=2
+LOGNAME=USER
+SSH_CONNECTION=10.10.111.48 51588 10.10.103.86 22
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+XDG_RUNTIME_DIR=/run/user/0
++ lsb_release -a
+./collect.sh: line 10: lsb_release: command not found
++ uname -a
+Linux node86 3.10.0-957.el7.x86_64 #1 SMP Thu Nov 8 23:39:32 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
++ lscpu
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                48
+On-line CPU(s) list:   0-47
+Thread(s) per core:    2
+Core(s) per socket:    6
+Socket(s):             4
+NUMA node(s):          8
+Vendor ID:             AuthenticAMD
+CPU family:            21
+Model:                 2
+Model name:            AMD Opteron(tm) Processor 6337 HE
+Stepping:              0
+CPU MHz:               1000.000
+CPU max MHz:           2200.0000
+CPU min MHz:           1000.0000
+BogoMIPS:              4400.33
+Virtualization:        AMD-V
+L1d cache:             16K
+L1i cache:             64K
+L2 cache:              2048K
+L3 cache:              6144K
+NUMA node0 CPU(s):     0-5
+NUMA node1 CPU(s):     6-11
+NUMA node2 CPU(s):     12-17
+NUMA node3 CPU(s):     18-23
+NUMA node4 CPU(s):     24-29
+NUMA node5 CPU(s):     30-35
+NUMA node6 CPU(s):     36-41
+NUMA node7 CPU(s):     42-47
+Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc art rep_good nopl nonstop_tsc extd_apicid amd_dcm aperfmperf pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 popcnt aes xsave avx f16c lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs xop skinit wdt fma4 tce nodeid_msr tbm topoext perfctr_core perfctr_nb cpb hw_pstate retpoline_amd ssbd ibpb vmmcall bmi1 arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold
++ cat /proc/meminfo
+MemTotal:       32751988 kB
+MemFree:        31110624 kB
+MemAvailable:   30937492 kB
+Buffers:               0 kB
+Cached:           133100 kB
+SwapCached:       191068 kB
+Active:           331744 kB
+Inactive:         775400 kB
+Active(anon):     280172 kB
+Inactive(anon):   750956 kB
+Active(file):      51572 kB
+Inactive(file):    24444 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:      16515068 kB
+SwapFree:       15467508 kB
+Dirty:                40 kB
+Writeback:             0 kB
+AnonPages:        784832 kB
+Mapped:            54856 kB
+Shmem:             57068 kB
+Slab:             186956 kB
+SReclaimable:      50616 kB
+SUnreclaim:       136340 kB
+KernelStack:       11328 kB
+PageTables:        11344 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    32891060 kB
+Committed_AS:    4826284 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      372176 kB
+VmallocChunk:   34333663228 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:    669696 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      237184 kB
+DirectMap2M:     8132608 kB
+DirectMap1G:    25165824 kB
++ inxi -F -c0
+./collect.sh: line 14: inxi: command not found
++ lsblk -a
+NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda               8:0    0 931.5G  0 disk 
+├─sda1            8:1    0     1G  0 part /boot
+└─sda2            8:2    0 930.5G  0 part 
+  ├─centos-root 253:0    0 914.8G  0 lvm  /
+  └─centos-swap 253:1    0  15.8G  0 lvm  [SWAP]
++ lsscsi -s
+[3:0:0:0]    disk    ATA      ST91000640NS     SN03  /dev/sda   1.00TB
++ module list
+./collect.sh: line 17: module: command not found
++ nvidia-smi
+./collect.sh: line 18: nvidia-smi: command not found
++ lshw -short -quiet -sanitize
++ cat
+H/W path           Device     Class          Description
+========================================================
+                              system         CB60-T Blade (To Be Filled By O.E.M.)
+/0                            bus            CB60-T Blade
+/0/0                          memory         64KiB BIOS
+/0/4                          processor      AMD Opteron(tm) Processor 6337 HE
+/0/4/5                        memory         576KiB L1 cache
+/0/4/6                        memory         12MiB L2 cache
+/0/4/7                        memory         12MiB L3 cache
+/0/8                          processor      AMD Opteron(tm) Processor 6337 HE
+/0/8/9                        memory         576KiB L1 cache
+/0/8/a                        memory         12MiB L2 cache
+/0/8/b                        memory         12MiB L3 cache
+/0/18                         memory         32GiB System Memory
+/0/18/0                       memory         8GiB DIMM DDR3 Synchronous Registered (Buffered) 800 MHz (1.2 ns)
+/0/18/1                       memory         DDR3 [empty]
+/0/18/2                       memory         DDR3 [empty]
+/0/18/3                       memory         DDR3 [empty]
+/0/18/4                       memory         8GiB DIMM DDR3 Synchronous Registered (Buffered) 800 MHz (1.2 ns)
+/0/18/5                       memory         DDR3 [empty]
+/0/18/6                       memory         DDR3 [empty]
+/0/18/7                       memory         DDR3 [empty]
+/0/18/8                       memory         8GiB DIMM DDR3 Synchronous Registered (Buffered) 800 MHz (1.2 ns)
+/0/18/9                       memory         DDR3 [empty]
+/0/18/a                       memory         DDR3 [empty]
+/0/18/b                       memory         DDR3 [empty]
+/0/18/c                       memory         8GiB DIMM DDR3 Synchronous Registered (Buffered) 800 MHz (1.2 ns)
+/0/18/d                       memory         DDR3 [empty]
+/0/18/e                       memory         DDR3 [empty]
+/0/18/f                       memory         DDR3 [empty]
+/0/1                          processor      AMD Opteron(tm) Processor 6337 HE
+/0/2                          processor      AMD Opteron(tm) Processor 6337 HE
+/0/100                        bridge         RD890 Northbridge only dual slot (2x8) PCI-e GFX Hydra part
+/0/100/4                      bridge         RD890/RD9x0/RX980 PCI to PCI bridge (PCI Express GPP Port 0)
+/0/100/4/0         enp2s0f0   network        82576 Gigabit Network Connection
+/0/100/4/0.1       enp2s0f1   network        82576 Gigabit Network Connection
+/0/100/11          scsi3      storage        SB7x0/SB8x0/SB9x0 SATA Controller [IDE mode]
+/0/100/11/0.0.0    /dev/sda   disk           1TB ST91000640NS
+/0/100/11/0.0.0/1  /dev/sda1  volume         1GiB Linux filesystem partition
+/0/100/11/0.0.0/2  /dev/sda2  volume         930GiB Linux LVM Physical Volume partition
+/0/100/12                     bus            SB7x0/SB8x0/SB9x0 USB OHCI0 Controller
+/0/100/12/1        usb3       bus            OHCI PCI host controller
+/0/100/12.2                   bus            SB7x0/SB8x0/SB9x0 USB EHCI Controller
+/0/100/12.2/1      usb1       bus            EHCI Host Controller
+/0/100/12.2/1/2               bus            Virtual Hub
+/0/100/12.2/1/2/1             input          Virtual Keyboard and Mouse
+/0/100/13                     bus            SB7x0/SB8x0/SB9x0 USB OHCI0 Controller
+/0/100/13/1        usb4       bus            OHCI PCI host controller
+/0/100/13.1                   bus            SB7x0 USB OHCI1 Controller
+/0/100/13.1/1      usb5       bus            OHCI PCI host controller
+/0/100/13.2                   bus            SB7x0/SB8x0/SB9x0 USB EHCI Controller
+/0/100/13.2/1      usb2       bus            EHCI Host Controller
+/0/100/13.2/1/3               bus            CY7C65640 USB-2.0 "TetraHub"
+/0/100/14                     bus            SBx00 SMBus Controller
+/0/100/14.1                   storage        SB7x0/SB8x0/SB9x0 IDE Controller
+/0/100/14.3                   bridge         SB7x0/SB8x0/SB9x0 LPC host controller
+/0/100/14.4                   bridge         SBx00 PCI to PCI Bridge
+/0/100/14.4/4                 display        ASPEED Graphics Family
+/0/101                        bridge         Family 15h Processor Function 0
+/0/102                        bridge         Family 15h Processor Function 1
+/0/103                        bridge         Family 15h Processor Function 2
+/0/104                        bridge         Family 15h Processor Function 3
+/0/105                        bridge         Family 15h Processor Function 4
+/0/106                        bridge         Family 15h Processor Function 5
+/0/107                        bridge         Family 15h Processor Function 0
+/0/108                        bridge         Family 15h Processor Function 1
+/0/109                        bridge         Family 15h Processor Function 2
+/0/10a                        bridge         Family 15h Processor Function 3
+/0/10b                        bridge         Family 15h Processor Function 4
+/0/10c                        bridge         Family 15h Processor Function 5
+/0/10d                        bridge         Family 15h Processor Function 0
+/0/10e                        bridge         Family 15h Processor Function 1
+/0/10f                        bridge         Family 15h Processor Function 2
+/0/110                        bridge         Family 15h Processor Function 3
+/0/111                        bridge         Family 15h Processor Function 4
+/0/112                        bridge         Family 15h Processor Function 5
+/0/113                        bridge         Family 15h Processor Function 0
+/0/114                        bridge         Family 15h Processor Function 1
+/0/115                        bridge         Family 15h Processor Function 2
+/0/116                        bridge         Family 15h Processor Function 3
+/0/117                        bridge         Family 15h Processor Function 4
+/0/118                        bridge         Family 15h Processor Function 5
+/0/119                        bridge         Family 15h Processor Function 0
+/0/11a                        bridge         Family 15h Processor Function 1
+/0/11b                        bridge         Family 15h Processor Function 2
+/0/11c                        bridge         Family 15h Processor Function 3
+/0/11d                        bridge         Family 15h Processor Function 4
+/0/11e                        bridge         Family 15h Processor Function 5
+/0/11f                        bridge         Family 15h Processor Function 0
+/0/120                        bridge         Family 15h Processor Function 1
+/0/121                        bridge         Family 15h Processor Function 2
+/0/122                        bridge         Family 15h Processor Function 3
+/0/123                        bridge         Family 15h Processor Function 4
+/0/124                        bridge         Family 15h Processor Function 5
+/0/125                        bridge         Family 15h Processor Function 0
+/0/126                        bridge         Family 15h Processor Function 1
+/0/127                        bridge         Family 15h Processor Function 2
+/0/128                        bridge         Family 15h Processor Function 3
+/0/129                        bridge         Family 15h Processor Function 4
+/0/12a                        bridge         Family 15h Processor Function 5
+/0/12b                        bridge         Family 15h Processor Function 0
+/0/12c                        bridge         Family 15h Processor Function 1
+/0/12d                        bridge         Family 15h Processor Function 2
+/0/12e                        bridge         Family 15h Processor Function 3
+/0/12f                        bridge         Family 15h Processor Function 4
+/0/130                        bridge         Family 15h Processor Function 5
+/0/3                          system         PnP device PNP0c02
+/0/5                          system         PnP device PNP0c02
+/0/6                          system         PnP device PNP0b00
+/0/7                          communication  PnP device PNP0501
+/0/9                          system         PnP device PNP0c02
+/0/a                          system         PnP device PNP0c02
+/0/b                          system         PnP device PNP0c02
+/0/c                          system         PnP device PNP0c02
+/0/d                          system         PnP device PNP0c01
